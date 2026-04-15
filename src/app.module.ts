@@ -6,18 +6,26 @@ import { ProdutosModule } from './produtos/produtos.module';
 import { MovimentacaoModule } from './movimentacoes/movimentacoes.module';
 import { AuthModule } from './auth/auth.module';
 
- 
 @Module({
-  imports: [TypeOrmModule.forRoot({
-    type:'mysql',
-    host:'localhost',
-    port:3306,
-    username:'root',
-    password:'root',
-    database:'estoque_db',
-    autoLoadEntities:true,
-    synchronize:true
-  }), ProdutosModule, MovimentacaoModule, AuthModule],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: process.env.DATABASE_HOST,
+      port: Number(process.env.DATABASE_PORT),
+      username: process.env.DATABASE_USER,
+      password: process.env.DATABASE_PASSWORD,
+      database: process.env.DATABASE_NAME,
+      autoLoadEntities: true,
+      synchronize: true,
+      ssl: {
+        minVersion: 'TLSv1.2',
+        rejectUnauthorized: true,
+      },
+    }),
+    ProdutosModule,
+    MovimentacaoModule,
+    AuthModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

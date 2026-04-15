@@ -11,14 +11,14 @@ import { JwtStrategy } from './jwt.strategy';
   imports: [
     TypeOrmModule.forFeature([Usuario]),
     JwtModule.register({
-      secret: 'segredo_super_forte',
+      secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: '1d' },
     }),
   ],
   controllers: [AuthController],
   providers: [
     AuthService,
-    JwtStrategy, 
+    JwtStrategy,
   ],
   exports: [AuthService],
 })
