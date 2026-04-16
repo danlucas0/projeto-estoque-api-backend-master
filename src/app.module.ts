@@ -40,8 +40,3 @@ import { AuthModule } from './auth/auth.module';
 })
 export class AppModule {}
 
-console.log('DB HOST:', process.env.DATABASE_HOST);
-console.log('DB PORT:', process.env.DATABASE_PORT);
-console.log('DB USER:', process.env.DATABASE_USER);
-console.log('DB NAME:', process.env.DATABASE_NAME);
-console.log('JWT SECRET EXISTS:', !!process.env.JWT_SECRET);
